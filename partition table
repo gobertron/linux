@@ -1,0 +1,34 @@
+How to create a partition table using fdisk
+
+sudo fdisk <device file>
+
+If the device doesn’t have a valid partition table, fdisk will automatically create a partition table 
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier
+Command (m for help):
+
+If you are sure that you want to run the partition, enter w and press return to write the partition table to disk & exit.
+
+The partition table will be effective immediately, but will not contain any partition. In order to create a partition (for this example we will create one partition being as large as the entire device), run
+
+"sudo fdisk <device file>"
+
+
+This time, enter the n command (new partition). 
+When it asks you about the partition type and its size, just press return every time to select the defaults. 
+It should look like this (<return> added to show you where you should press return).
+
+
+Command (m for help): "n"
+Partition type
+p primary (0 primary, 0 extended, 4 free)
+e extended (container for logical partitions)
+Select (default p): <return>
+Partition number (1-4, default 1): <return>
+First sector (2048-31143935, default 2048): <return>
+Last sector, +sectors or +size{K,M,G,T,P} (2048-31143935, default 31143935): <return>
+
+
+After that, when fdisk prompts for a command again (i.e. when it says Command (m for help): ), enter "w" in order to write the changes (i.e. the new partition) to the disk & exit. After fdisk exits, you can see the partition in /dev, e.g. /dev/sdh1
+
+(somewebsite)
